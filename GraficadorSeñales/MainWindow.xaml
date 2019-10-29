@@ -89,6 +89,8 @@
 
         </ComboBox>
         <Grid x:Name="panelConfiguracion_2" HorizontalAlignment="Left" Height="125" Margin="10,64,0,0" VerticalAlignment="Top" Width="213" Grid.Column="1"/>
-        <TextBlock Name="lblHertz" HorizontalAlignment="Left" Margin="452,427,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="59" Width="115" FontSize="46"><Run Text=" 0 HZ"/><LineBreak/><Run/></TextBlock>
+        <TextBlock Name="lblHertz_Baja" HorizontalAlignment="Left" Margin="452,427,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="59" Width="115" FontSize="46"><Run Text=" 0 HZ"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="lblHertz_Alta" HorizontalAlignment="Left" Margin="46,427,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="59" Width="115" FontSize="46" Grid.Column="1"><Run Text=" 0 HZ"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="lblTecla" HorizontalAlignment="Left" Margin="147,427,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="59" Width="115" FontSize="46" Grid.Column="1"><Run Text=" 0 HZ"/><LineBreak/><Run/></TextBlock>
     </Grid>
 </Window>

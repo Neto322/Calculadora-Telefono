@@ -20,9 +20,9 @@ namespace GraficadorSeñales
     /// </summary>
     public partial class MainWindow : Window
     {
-        double tiempoinicial;
-        double tiempofinal;
-        double frecuenciamuestreo;
+        double tiempoinicial = 0;
+        double tiempofinal = 1;
+        double frecuenciamuestreo = 0;
         double amplitud;
         double fase;
         double frecuencia;
@@ -193,7 +193,9 @@ namespace GraficadorSeñales
             if(cbOperacion.SelectedIndex == 4)
             {
                 int indicemaximo = 0;
-                for(int i =0; i < señalResultante.Muestras.Count/2; i++)
+                int indiceinicial = (int)((690.0f * (double)(señalResultante.Muestras.Count))/ señalResultante.FrecuenciaMuestreo);
+                int indicefinal = (int)((950.0f * (double)(señalResultante.Muestras.Count)) / señalResultante.FrecuenciaMuestreo);
+                for (int i =indiceinicial; i < indicefinal; i++)
                 {
                     if(señalResultante.Muestras[i].Y > señalResultante.Muestras[indicemaximo].Y)
                     {
@@ -201,7 +203,22 @@ namespace GraficadorSeñales
                     }
                 }
                 double frecuencia = (double)(indicemaximo * señalResultante.FrecuenciaMuestreo) / (double)señalResultante.Muestras.Count;
-                lblHertz.Text = frecuencia.ToString("N") + "Hz";
+                lblHertz_Baja.Text = frecuencia.ToString("N") + "Hz";
+
+                // Obtener la frecuencia alta
+                int indicemaximoalta = 0;
+                int indiceinicialalta = (int)((1200.0 * (double)(señalResultante.Muestras.Count)) / señalResultante.FrecuenciaMuestreo);
+                int indicefinalalta = (int)((1482.0 * (double)(señalResultante.Muestras.Count)) / señalResultante.FrecuenciaMuestreo);
+                for (int i = indiceinicialalta; i < indicefinalalta; i++)
+                {
+                    if (señalResultante.Muestras[i].Y > señalResultante.Muestras[indicemaximoalta].Y)
+                    {
+                        indicemaximoalta = i;
+                    }
+                }
+                double frecuenciaAlta = (double)(indicemaximoalta * señalResultante.FrecuenciaMuestreo) / (double)señalResultante.Muestras.Count;
+                lblHertz_Baja.Text = frecuencia.ToString("N") + "Hz";
+
             }
             lblLimiteSuperior.Text = amplitudMaxima.ToString("F");
             lblLimiteInferior.Text = "-" + amplitudMaxima.ToString("F");
@@ -288,22 +305,15 @@ namespace GraficadorSeñales
                     break;
 
                 case 1:
-
                     panelConfiguracion_2.Children.Add(new ConfiguracionSeñalSenoidal());
-
                     break;
 
                 case 2:
                     panelConfiguracion_2.Children.Add(new ConfiguracionSeñalExponencial());
-
-
                     break;
 
                 case 3:
-
                     panelConfiguracion_2.Children.Add(new ControlAudio());
-
-
                     break;
                 default:
 
